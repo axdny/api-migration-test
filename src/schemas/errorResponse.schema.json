@@ -1,0 +1,15 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "description": "Generic failure response",
+  "type": "object",
+  "properties": {
+    "Success": { "type": "boolean", "const": false },
+    "Message": { "type": "string" },
+    "FieldErrors": {
+      "type": "object",
+      "additionalProperties": { "type": "string" }
+    }
+  },
+  "required": ["Success", "Message"],
+  "additionalProperties": false
+}

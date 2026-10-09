@@ -1,0 +1,35 @@
+{
+  "name": "api-migration-test",
+  "version": "1.0.0",
+  "private": true,
+  "description": "BDD API test framework for validating a legacy-to-core API migration: contract checks, structure/value diffing and performance comparison.",
+  "type": "module",
+  "scripts": {
+    "mock": "node mock/server.mjs",
+    "cucumber": "tsx node_modules/@cucumber/cucumber/bin/cucumber.js",
+    "test": "npm run cucumber -- --tags \"not @ignore and not @known-divergence\"",
+    "test:smoke": "npm run cucumber -- --tags \"@smoke and not @ignore\"",
+    "test:comparison": "npm run cucumber -- --tags \"@comparison and not @known-divergence\"",
+    "test:divergence": "npm run cucumber -- --tags \"@known-divergence\"",
+    "report": "node scripts/serve-report.mjs",
+    "test:report": "node scripts/serve-report.mjs --run-tests",
+    "typecheck": "tsc --noEmit",
+    "format": "prettier --write \"**/*.{ts,mjs,json,md,yml}\"",
+    "format:check": "prettier --check \"**/*.{ts,mjs,json,md,yml}\""
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "author": "Andrés Dalmau",
+  "license": "MIT",
+  "devDependencies": {
+    "@cucumber/cucumber": "^12.2.0",
+    "@playwright/test": "^1.58.2",
+    "@types/node": "^22.14.0",
+    "ajv": "^8.17.1",
+    "dotenv": "^16.4.7",
+    "prettier": "^3.5.3",
+    "tsx": "^4.19.3",
+    "typescript": "^5.8.2"
+  }
+}
